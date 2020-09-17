@@ -31,7 +31,6 @@ def getWordFrequencyMap(text):
 	dict = {}
 	listofwords = text.split()
 	for word in listofwords:
-		print(word)
 		if word in wordlist:
 			if word in dict:
 				dict[word] = dict[word] + 1
