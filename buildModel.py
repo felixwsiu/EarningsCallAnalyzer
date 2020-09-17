@@ -30,13 +30,17 @@ def buildModel(listOfTickers):
 
 			#Only valid dates that exist will be parsed
 			if futuredate <  datetime.today():
-				change = yf.download(ticker, start=date, end=futuredate)
-				start = change["High"][0]
-				end = change["High"][-1]
-				difference = end - start
-				pChange = difference/start * 100
-				print("Added an entry for " + ticker)
-				addEntry(ticker,score,pChange)
+				try:
+					change = yf.download(ticker, start=date, end=futuredate)
+					start = change["High"][0]
+					end = change["High"][-1]
+					difference = end - start
+					pChange = difference/start * 100
+					print("Added an entry for " + ticker)
+					addEntry(ticker,score,pChange)
+				except Exception as e:
+					print("Could not download ticker, probably delisted") 
+					break
 
 
 
@@ -64,7 +68,7 @@ def addEntry(ticker, score, change):
 
 def getListOfTickers():
 	tickerlist=[]
-	with open("NYSE_20200916.txt") as file:
+	with open("NYSE_EDITED.txt") as file:
 		lines = file.readlines()
 		for line in lines:
 			ticker = line.split(",")[0]
