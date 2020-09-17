@@ -6,8 +6,6 @@ from datetime import datetime
 from user_agent import generate_user_agent, generate_navigator
 
 
-url = "http://www.conferencecalltranscripts.org/?co=tsla"
-urlt = "https://seekingalpha.com/article/4360072-tesla-inc-tsla-ceo-elon-musk-on-q2-2020-results-earnings-call-transcript"
 #Seeking alpha forces a capcha when trying to scrape their list of transcripts, therefore conferencecalltranscripts.org is used instead
 
 
@@ -52,7 +50,6 @@ def prepareArticle(url):
 		article.parse()
 		return article
 	except Exception as e:
-		print("Article could not be downloaded")
 		return False
 	
 

@@ -1,5 +1,8 @@
 from azure.cosmos import CosmosClient
+import yfinance as yf
 import articlescrape
+from datetime import datetime
+import calendar
 import scorer
 import os
 
@@ -17,11 +20,32 @@ def buildModel(listOfTickers):
 	for ticker in listOfTickers:
 		urls = articlescrape.getAllTranscriptsForTicker(ticker)
 		for url in urls:
-			print(url)
+			date = articlescrape.getTranscriptPublishDate(url)
 			score = scorer.getScoreOfCall(url)
-			print(score)
+
+			if date == False or score == False:
+				continue
+
+			futuredate = add_months(date,1)
+
+			#Only valid dates that exist will be parsed
+			if futuredate <  datetime.today():
+				change = yf.download(ticker, start=date, end=futuredate)
+				start = change["High"][0]
+				end = change["High"][-1]
+				difference = end - start
+				pChange = difference/start * 100
+				print("Added an entry for " + ticker)
+				addEntry(ticker,score,pChange)
 
 
+
+def add_months(sourcedate, months):
+    month = sourcedate.month - 1 + months
+    year = sourcedate.year + month // 12
+    month = month % 12 + 1
+    day = min(sourcedate.day, calendar.monthrange(year,month)[1])
+    return datetime(year, month, day)
 
 
 # Adds an earnings call entry to the model
@@ -37,4 +61,16 @@ def addEntry(ticker, score, change):
     	}
     )
 
-buildModel(["TSLA"])
+
+def getListOfTickers():
+	tickerlist=[]
+	with open("NYSE_20200916.txt") as file:
+		lines = file.readlines()
+		for line in lines:
+			ticker = line.split(",")[0]
+			tickerlist.append(ticker)
+	return tickerlist
+
+
+buildModel(getListOfTickers())
+
