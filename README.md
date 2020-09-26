@@ -17,7 +17,7 @@ Project is created with:
 * Python version: 3.7.8
 
 Scoring of each transcript was done using Amazon Comprehend (AWS Natural Language Processing) and the model was built on Amazon EC2 instances for virtual cloud hosting.
-Scatterplot and data science tools are from: https://matplotlib.org/
+<br>Scatterplot and data science tools are from: https://matplotlib.org/
 
 ## Setup
 Virtual environment for dependencies can be created by : python3 -m venv env
