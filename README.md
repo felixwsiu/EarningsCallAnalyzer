@@ -12,6 +12,8 @@ Important resources needed for this project:
 <br>Exchange Ticker Symbols: http://www.eoddata.com/symbols.aspx
 <br>Link Database to Earnings Call Transcripts: http://www.conferencecalltranscripts.org
 
+Since the scatterplot at the moment is not giving a strong enough correlation, a change in the modeling and weighing of sentiment words will need to be changed. A current work in progress!
+
 ## Technologies
 Project is created with:
 * Python version: 3.7.8
