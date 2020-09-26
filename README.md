@@ -1,24 +1,44 @@
 # EarningsCallAnalyzer
+![Page Image](https://github.com/felixwsiu/EarningsCallAnalyzer/blob/master/Scatterplot%20Screenshot.jpg)
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
 
-pip install awscli boto3
-Boto3 : AWS SDK for Python
-awscli : AWS Command Line Interface
+## General info
+A project that was built to find a correlation between the sentimental language found in a company's earnings call transcripts and the resulted change in stock price for a 1 month time period.
 
-pip3 install newspaper3k
-article scraping and curation
+Important resources needed for this project:
+Exchange Ticker Symbols: http://www.eoddata.com/symbols.aspx
+Link Database to Earnings Call Transcripts: http://www.conferencecalltranscripts.org
 
-pip install bs4
-pip install requests
- pip install yfinance
-pip install azure-cosmos
+## Technologies
+Project is created with:
+* Python version: 3.7.8
 
-pip install user_agent
-to be able to not get blocked when scraping
+Scoring of each transcript was done using Amazon Comprehend (AWS Natural Language Processing) and the model was built on Amazon EC2 instances for virtual cloud hosting.
+Scatterplot and data science tools are from: https://matplotlib.org/
 
-python3 -m venv tutorial-env
+## Setup
+Virtual environment for dependencies can be created by : python3 -m venv env
 
-Set up user in IAM (Identity and Access Management)
+```
+$ pip install awscli           (AWS Command Line Interface)
+$ pip install boto3            (AWS SDK for Python)
+$ pip3 install newspaper3k     (Used for article scraping and curation)
+$ pip install beautifulsoup4   (Used for webpage scraping)
+$ pip install requests         (Used with bs4 to send a get request to scrape results)
+$ pip install yfinance         (Used to get historical data for companies)
+$ pip install azure-cosmos     (Database storage for modeling)
+$ pip install user_agent       (To prevent captchas on seekingalpha, a new browser agent was needed per request to prevent blocking)
+```
 
+Some environmental variables will be needed, please set these to run this project locally:
+```
+ACCOUNT_URI : This is the URI of your Azure Cosmos DB Account
+ACCOUNT_KEY : This is the primary key of your Azure Cosmos DB Account
+```
+The model results were added to a Azure Cosmos DB container, you can save the results on disk instead if you like.
+Set up user in IAM (Identity and Access Management) for AWS instances.
 
- Goal : Distribute computation over multiple instances
  
