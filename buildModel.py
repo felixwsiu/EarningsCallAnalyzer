@@ -6,6 +6,12 @@ import calendar
 import scorer
 import os
 
+
+#Used to graph the scatterplot
+import matplotlib.pyplot as plt
+plt.style.use('seaborn-whitegrid')
+import numpy as np
+
 url = os.environ['ACCOUNT_URI']
 key = os.environ['ACCOUNT_KEY']
 client = CosmosClient(url, credential=key)
@@ -16,6 +22,7 @@ container = database.get_container_client(container_name)
 
 
 # Takes in a list of tickers and creates a database of scores
+# Run this function to initialize the model so the scatterplot can be plotted
 def buildModel(listOfTickers):
 	for ticker in listOfTickers:
 		urls = articlescrape.getAllTranscriptsForTicker(ticker)
@@ -75,6 +82,24 @@ def getListOfTickers():
 			tickerlist.append(ticker)
 	return tickerlist
 
+# Returns all score and price change data from the ticker model built in our database
+def getDataForScattter():
+	languagescores = []
+	pricechanges = []
+	for item in container.query_items(query='SELECT * FROM c', enable_cross_partition_query=True):
+		languagescores.append(item["score"])
+		pricechanges.append(item["change"])
+	return languagescores, pricechanges
 
-buildModel(getListOfTickers())
+# Plots the scatterplot using the data from the model
+def plotScatter():
+	x,y = getDataForScattter()
+	colors = (0,0,0)
+	area = np.pi*3
+	plt.scatter(x, y, s=area, c=colors, alpha=0.5)
+	plt.title('Earnings Call Analysis with Natural Language Processing')
+	plt.xlabel('Earnings Language Score')
+	plt.ylabel('Price Change %')
+	plt.show()
 
+plotScatter()
