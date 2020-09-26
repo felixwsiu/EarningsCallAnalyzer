@@ -9,8 +9,8 @@
 A project that was built to find a correlation between the sentimental language found in a company's earnings call transcripts and the resulted change in stock price for a 1 month time period.
 
 Important resources needed for this project:
-Exchange Ticker Symbols: http://www.eoddata.com/symbols.aspx
-Link Database to Earnings Call Transcripts: http://www.conferencecalltranscripts.org
+<br>Exchange Ticker Symbols: http://www.eoddata.com/symbols.aspx
+<br>Link Database to Earnings Call Transcripts: http://www.conferencecalltranscripts.org
 
 ## Technologies
 Project is created with:
@@ -39,6 +39,6 @@ ACCOUNT_URI : This is the URI of your Azure Cosmos DB Account
 ACCOUNT_KEY : This is the primary key of your Azure Cosmos DB Account
 ```
 The model results were added to a Azure Cosmos DB container, you can save the results on disk instead if you like.
-Set up user in IAM (Identity and Access Management) for AWS instances.
+<br>Set up user in IAM (Identity and Access Management) for AWS instance management and connection.
 
  
