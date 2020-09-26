@@ -8,7 +8,7 @@
 ## General info
 A project that was built to find a correlation between the sentimental language found in a company's earnings call transcripts and the resulted change in stock price for a 1 month time period.
 
-<bold>Important resources needed for this project:</bold>
+<b>Important resources needed for this project:</b>
 <br>Exchange Ticker Symbols: http://www.eoddata.com/symbols.aspx
 <br>Link Database to Earnings Call Transcripts: http://www.conferencecalltranscripts.org
 <br>Positive Words Lexicon:https://github.com/jeffreybreen/twitter-sentiment-analysis-tutorial-201107/blob/master/data/opinion-lexicon-English/positive-words.txt
