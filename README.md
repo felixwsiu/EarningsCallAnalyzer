@@ -11,6 +11,10 @@ A project that was built to find a correlation between the sentimental language 
 Important resources needed for this project:
 <br>Exchange Ticker Symbols: http://www.eoddata.com/symbols.aspx
 <br>Link Database to Earnings Call Transcripts: http://www.conferencecalltranscripts.org
+<br>Positive Words Lexicon:https://github.com/jeffreybreen/twitter-sentiment-analysis-tutorial-201107/blob/master/data/opinion-lexicon-English/positive-words.txt
+<br>Negative Words Lexicon:https://github.com/jeffreybreen/twitter-sentiment-analysis-tutorial-201107/blob/master/data/opinion-lexicon-English/negative-words.txt
+
+The positive/negative opinion lexicons are used to filter out irrelevant words out of the transcripts to prevent cluttering of the sentiment score.
 
 Since the scatterplot at the moment is not giving a strong enough correlation, a change in the modeling and weighing of sentiment words will need to be changed. A current work in progress!
 
